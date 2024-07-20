@@ -1,0 +1,58 @@
+Y=∑m (0,2,6,9,11,13)  (Simplification and solving procedure with output attached in Report)
+
+Design Code:
+
+module mux4_1(y, sel,d,c);
+input d, c;
+input [1:0] sel;
+output y;
+reg y;
+wire in_0, in_1, in_2, in_3;
+ assign in_0 = ~d;
+ assign in_1 = c & ~d;
+ assign in_2 = d;
+ assign in_3 = ~c & d;
+ always @*
+begin
+case (sel)
+ 2'b00: y = in_0;
+ 2'b01: y = in_1;
+ 2'b10: y = in_2;
+ 2'b11: y = in_3;
+ default: y = 1'bx;
+ endcase
+ end
+endmodule
+
+Test-bench Code:
+
+module mux4_1_tb;
+reg d, c;
+reg [1:0] sel;
+wire y;
+mux4_1 uut (.d(d),.c(c),.sel(sel),.y(y));
+initial
+begin
+ d = 0;
+ c = 0;
+ sel = 2'b00;
+ #10;
+$display("d = %b, c = %b, sel = %b, y = %b", d, c, sel, y); 
+ d = 0;
+ c = 1;
+ sel = 2'b01;
+ #10;
+$display("d = %b, c = %b, sel = %b, y = %b", d, c, sel, y); 
+ d = 1;
+ c = 1;
+ sel = 2'b10;
+ #10;
+$display("d = %b, c = %b, sel = %b, y = %b", d, c, sel, y); 
+ d = 1;
+ c = 0;
+ sel = 2'b11;
+ #10;
+$display("d = %b, c = %b, sel = %b, y = %b", d, c, sel, y);
+$finish;
+ end
+endmodule
