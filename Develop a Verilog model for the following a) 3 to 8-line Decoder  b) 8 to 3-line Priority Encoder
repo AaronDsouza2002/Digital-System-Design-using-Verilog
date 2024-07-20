@@ -1,0 +1,88 @@
+a) 3 to 8-line Decoder (Output attached in Report)
+
+Design Code: 
+
+module encoder_8_3(a,y);
+output reg [2:0]a;
+input [7:0]y;
+always@(y)
+begin
+case(y)
+8'b00000001:a=3'b000;
+8'b00000010:a=3'b001;
+8'b00000100:a=3'b010;
+8'b00001000:a=3'b011;
+8'b00010000:a=3'b100;
+8'b00100000:a=3'b101;
+8'b01000000:a=3'b110;
+8'b10000000:a=3'b111;
+default:$display ("ERROR");
+endcase
+end
+endmodule
+
+
+Test-bench Code:
+
+module encoder_tb();
+reg[7:0]y;
+wire[2:0]a;
+encoder_8_3 u0(a,y);
+initial
+begin
+y=8'b00000001;
+#5 y=8'b00000010;
+#5 y=8'b00000100;
+#5 y=8'b00001000;
+#5 y=8'b00010000;
+#5 y=8'b00100000;
+#5 y=8'b01000000;
+#5 y=8'b10000000;
+#5 $finish;
+end
+endmodule
+
+
+
+
+b) 8 to 3-line Priority Encoder (Output attached in Report)
+
+Design Code: 
+
+module encoder_8_3(a,y);
+output reg [2:0]a;
+input [7:0]y;
+always@(y)
+begin
+casex(y)
+8'b00000001:a=3'b000;
+8'b0000001x:a=3'b001;
+8'b000001xx:a=3'b010;
+8'b00001xxx:a=3'b011;
+8'b0001xxxx:a=3'b100;
+8'b001xxxxx:a=3'b101;
+8'b01xxxxxx:a=3'b110;
+8'b1xxxxxxx:a=3'b111;
+default:$display ("ERROR");
+endcase
+end
+endmodule
+
+Test-bench Code:
+
+module encoder_tb();
+reg[7:0]y;
+wire[2:0]a;
+encoder_8_3 u0(a,y);
+initial begin
+y=8'b00000001;
+#5 y=8'b0000001x;
+#5 y=8'b000001xx;
+#5 y=8'b00001xxx;
+#5 y=8'b0001xxxx;
+#5 y=8'b001xxxxx;
+#5 y=8'b01xxxxxx;
+#5 y=8'b1xxxxxxx;
+#5 $finish;
+end
+endmodule
