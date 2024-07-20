@@ -1,3 +1,5 @@
+Design Code:
+
 module example_1 (y,a,b,c,d);
 output y;
 input a,b,c,d;
@@ -5,6 +7,7 @@ assign y=a|(b&c)|(~b&d);
 endmodule
 
 
+Test Bench Code:
 
 module example_1_tb ();
 reg a,b,c,d;
