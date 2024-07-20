@@ -29,7 +29,6 @@ $monitor("a = %b, b = %b, c = %b, d = %b, y = %b", a, b, c, d, y);
 #5 a=1;b=1;c=1;d=0;
 #5 a=1;b=1;c=1;d=1;
 AARON DSOUZA
- 4SO20EC003
 #5 $finish; 
 end
 endmodule
